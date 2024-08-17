@@ -7,7 +7,12 @@ import manifest from '../manifest.json';
 import Settings from './components/Settings';
 import { View, Text } from 'enmity/components';
 
-const SegmentedControl = getByProps('SegmentControl');
+const SegmentedControl = getByProps(
+	'SegmentedControlItem',
+	'Emoji',
+	'GIFs',
+	'Stickers'
+);
 const Patcher = create('Rain');
 
 const Rain: Plugin = {
@@ -21,14 +26,14 @@ const Rain: Plugin = {
 				const segmentedItems = returnValue.props.children;
 
 				const CustomSegment = (
-					<segmentedItems
+					<SegmentedControlItem
 						key='Rain'
 						label='Rain'
 					>
 						<View style={{ padding: 10 }}>
 							<Text>My Custom Segment Content</Text>
 						</View>
-					</segmentedItems>
+					</SegmentedControlItem>
 				);
 
 				segmentedItems.push(CustomSegment);
