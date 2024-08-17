@@ -5,42 +5,24 @@ import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
 
 import Settings from './components/Settings';
-import { View, Text } from 'enmity/components';
+import { Text } from 'enmity/components';
+import { findInReactTree } from 'enmity/utilities';
 
-const SegmentedControl = getByProps(
-	'SegmentedControlItem',
-	'Emoji',
-	'GIFs',
-	'Stickers'
-);
+const Stickers = getByProps('Stickers');
 const Patcher = create('Rain');
+
+console.log('Rain', Stickers);
 
 const Rain: Plugin = {
 	...manifest,
 
 	onStart() {
-		Patcher.after(
-			SegmentedControl.prototype,
-			'render',
-			(_, args, returnValue) => {
-				const segmentedItems = returnValue.props.children;
-
-				const CustomSegment = (
-					<SegmentedControlItem
-						key='Rain'
-						label='Rain'
-					>
-						<View style={{ padding: 10 }}>
-							<Text>My Custom Segment Content</Text>
-						</View>
-					</SegmentedControlItem>
-				);
-
-				segmentedItems.push(CustomSegment);
-
-				return returnValue;
-			}
-		);
+		// Patcher.after(Text.type, 'render', (self, args, res) => {
+		// 	const user = findInReactTree(
+		// 		res,
+		// 		(r) => r.props?.children[0][1].type.name == 'FriendPresence'
+		// 	);
+		// });
 	},
 
 	onStop() {
