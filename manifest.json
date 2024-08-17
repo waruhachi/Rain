@@ -1,11 +1,11 @@
 {
-   "name": "SilentTyping",
-   "version": "1.0.0",
-   "description": "Silences your typing indicator.",
-   "authors": [
-      {
-         "name": "eternal",
-         "id": "263689920210534400"
-      }
-   ]
+	"name": "Rain",
+	"version": "1.0.0",
+	"description": "An Enmity plugin that adds Line sticker support.",
+	"authors": [
+		{
+			"name": "waruhachi",
+			"id": "247829475029549056"
+		}
+	]
 }

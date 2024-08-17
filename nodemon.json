@@ -1,8 +1,5 @@
 {
-   "ignore": [
-      "dist/*",
-      "dist"
-   ],
-   "exec": "npm run build",
-   "ext": "*.*"
+	"ignore": ["dist/*", "dist"],
+	"exec": "npm run build",
+	"ext": "*.*"
 }

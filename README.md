@@ -7,8 +7,9 @@
 <div align='center'>
    <h3>Plugin Template</h3>
 
-   Template for Enmity plugins.<br />
-   Use `npm install` to install the required modules and use `npm run build` to build your plugin.
+Template for Enmity plugins.<br />
+Use `npm install` to install the required modules and use `npm run build` to build your plugin.
+
 </div>
 
 ---

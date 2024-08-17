@@ -5,25 +5,46 @@ import { create } from 'enmity/patcher';
 import manifest from '../manifest.json';
 
 import Settings from './components/Settings';
+import { View, Text } from 'enmity/components';
 
-const Typing = getByProps('startTyping');
-const Patcher = create('silent-typing');
+const SegmentedControl = getByProps('SegmentControl');
+const Patcher = create('Rain');
 
-const SilentTyping: Plugin = {
-   ...manifest,
+const Rain: Plugin = {
+	...manifest,
 
-   onStart() {
-      Patcher.instead(Typing, 'startTyping', () => { });
-      Patcher.instead(Typing, 'stopTyping', () => { });
-   },
+	onStart() {
+		Patcher.after(
+			SegmentedControl.prototype,
+			'render',
+			(_, args, returnValue) => {
+				const segmentedItems = returnValue.props.children;
 
-   onStop() {
-      Patcher.unpatchAll();
-   },
+				const CustomSegment = (
+					<segmentedItems
+						key='Rain'
+						label='Rain'
+					>
+						<View style={{ padding: 10 }}>
+							<Text>My Custom Segment Content</Text>
+						</View>
+					</segmentedItems>
+				);
 
-   getSettingsPanel({ settings }) {
-      return <Settings settings={settings} />;
-   }
+				segmentedItems.push(CustomSegment);
+
+				return returnValue;
+			}
+		);
+	},
+
+	onStop() {
+		Patcher.unpatchAll();
+	},
+
+	getSettingsPanel({ settings }) {
+		return <Settings settings={settings} />;
+	},
 };
 
-registerPlugin(SilentTyping);
+registerPlugin(Rain);
